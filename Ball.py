@@ -1,8 +1,8 @@
 import pygame
-from  Platform import Platform
+from Platform import Platform
 
 
-class Ball(object):
+class Ball:
     def __init__(self, color, x, y, widht, height):
         self.rect = pygame.Rect(x, y, widht, height)
         self.x = x
@@ -13,7 +13,8 @@ class Ball(object):
         self. acceleration = 5
         self.velx = 5
         self.vely = -5
-
+        self.lives = 1
+        self.score = 0
 
     def ball_movement(self):
         self.rect.x += self.velx
@@ -40,10 +41,16 @@ class Ball(object):
         if self.rect.bottom >= platform.rect.top and self.rect.bottom <= 600 and self.rect.centerx < platform.rect.right and self.rect.centerx > platform.rect.left:
             self.reverseY()
 
+    def check_ball_out(self):
+        if self.rect.bottom >= 600:
+            self.lives -= 1
+            print(self.lives)
+
     def update(self):
         self.ball_movement()
         self.collision_edges()
         self.collision_platform()
+        self.check_ball_out()
 
     def handle_events(self, event):
         pass

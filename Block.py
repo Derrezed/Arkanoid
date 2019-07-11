@@ -1,8 +1,7 @@
 import pygame
 
 
-
-class Block(object):
+class Block:
     def __init__(self, color, x, y, widht, height):
         self.rect = pygame.Rect(x, y, widht, height)
         self.x = x
@@ -10,7 +9,6 @@ class Block(object):
         self.width = widht
         self.height = height
         self.color = color
-
 
     def update(self):
         pass
